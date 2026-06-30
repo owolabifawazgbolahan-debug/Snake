@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake — Aviator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="A smooth, interactive Snake game with animations, music, and difficulty settings.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Snake">
+  </head>
+<body>
+  <div class="container">
+    <h1>Snake</h1>
+    <div class="hud">
+      <span id="score">Score: 0</span>
+      <span id="highScore">High: 0</span>
+      <div class="buttons">
+        <button id="startBtn">Start</button>
+        <button id="restartBtn">Restart</button>
+        <button id="musicToggle">Music: Off</button>
+      </div>
+    </div>
+
+    <div class="controls-row">
+      <label class="speed-control">Delay: <span id="delayVal">150</span> ms
+        <input id="speedRange" type="range" min="40" max="300" value="150">
+      </label>
+      <label class="dynamic"><input id="dynamicDifficulty" type="checkbox"> Increase speed with score</label>
+    </div>
+
+    <canvas id="game" width="400" height="400" aria-label="Snake game"></canvas>
+
+    <div class="instructions">
+      <p>Use arrow keys or WASD to move. Press <strong>Space</strong> to pause/resume.</p>
+      <p>Touch: use the directional buttons below on mobile.</p>
+    </div>
+
+    <div class="touch-controls" aria-hidden="false">
+      <button class="control-btn" id="upBtn">▲</button>
+      <div class="hrow">
+        <button class="control-btn" id="leftBtn">◀</button>
+        <button class="control-btn" id="downBtn">▼</button>
+        <button class="control-btn" id="rightBtn">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('SW registration failed:', err));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "appId": "com.aviator.snake",
+  "appName": "Snake",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

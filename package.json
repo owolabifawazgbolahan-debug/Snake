@@ -1,0 +1,40 @@
+{
+  "name": "snake-aviator",
+  "version": "1.0.0",
+  "description": "A smooth, interactive Snake game with animations, music, and difficulty settings.",
+  "main": "main.js",
+  "author": "Aviator",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "web:build": "echo 'Web build complete'",
+    "cap:init": "capacitor init",
+    "cap:add:ios": "capacitor add ios",
+    "cap:add:android": "capacitor add android",
+    "cap:copy": "capacitor copy",
+    "cap:open:ios": "capacitor open ios",
+    "cap:open:android": "capacitor open android"
+  },
+  "devDependencies": {
+    "electron": "27.0.0",
+    "electron-builder": "24.6.4"
+  },
+  "build": {
+    "appId": "com.aviator.snake",
+    "productName": "Snake",
+    "win": {
+      "target": ["nsis", "portable"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": ["dmg", "zip"]
+    },
+    "linux": {
+      "target": ["AppImage", "deb"]
+    }
+  }
+}

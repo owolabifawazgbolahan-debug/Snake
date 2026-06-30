@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+*.exe
+*.dmg
+*.deb
+*.AppImage
+
+# Electron
+out/
+
+# Capacitor
+ios/Pods/
+android/.gradle/
+android/build/
+android/local.properties
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temp
+.cache/
+tmp/
+
+# Archive
+Aviator.zip
+
