@@ -397,5 +397,7 @@ if(musicBtn){
   });
 }
 
-// Auto-start for convenience
-startGame();
+// Defer auto-start for faster app launch
+window.addEventListener('load', ()=>{
+  setTimeout(()=>{ startGame(); }, 100);
+});

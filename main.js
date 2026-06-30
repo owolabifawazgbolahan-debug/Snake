@@ -7,6 +7,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 500,
     height: 700,
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
@@ -17,6 +18,11 @@ function createWindow() {
 
   const startUrl = `file://${path.join(__dirname, 'index.html')}`;
   mainWindow.loadURL(startUrl);
+
+  // Show window when ready
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+  });
 
   // Uncomment to open DevTools
   // mainWindow.webContents.openDevTools();
