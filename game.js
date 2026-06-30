@@ -63,9 +63,15 @@ function scheduleNext(){ stopLoop(); loopTimeout = setTimeout(tick, currentDelay
 
 function placeFood(){
   let valid = false;
-  while(!valid){
+  let attempts = 0;
+  while(!valid && attempts < 1000){
     food = {x: Math.floor(Math.random()*cols), y: Math.floor(Math.random()*rows)};
     valid = !snake.some(s => s.x===food.x && s.y===food.y);
+    attempts++;
+  }
+  // fallback: if no valid spot found, place at random (shouldn't happen in normal play)
+  if(!valid){
+    food = {x: Math.floor(Math.random()*cols), y: Math.floor(Math.random()*rows)};
   }
 }
 
@@ -126,9 +132,48 @@ function draw(){
   if(flash>0){ ctx.fillStyle = '#0a1730'; flash--; } else { ctx.fillStyle = '#071129'; }
   ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  // draw food with small pulse when eaten
-  ctx.fillStyle = '#ff4d6d';
-  ctx.fillRect(food.x*scale, food.y*scale, scale, scale);
+  // draw food as apple
+  const appleX = food.x*scale + scale/2;
+  const appleY = food.y*scale + scale/2;
+  const appleSize = scale * 0.35;
+  
+  // apple body (red gradient)
+  const appleGrad = ctx.createRadialGradient(appleX - appleSize*0.2, appleY - appleSize*0.2, appleSize*0.1, appleX, appleY, appleSize);
+  appleGrad.addColorStop(0, '#ff6b6b');
+  appleGrad.addColorStop(0.7, '#dc2626');
+  appleGrad.addColorStop(1, '#991b1b');
+  ctx.fillStyle = appleGrad;
+  ctx.beginPath();
+  ctx.arc(appleX, appleY, appleSize, 0, Math.PI*2);
+  ctx.fill();
+  
+  // apple indent at top
+  ctx.fillStyle = '#7f1d1d';
+  ctx.beginPath();
+  ctx.arc(appleX, appleY - appleSize*0.7, appleSize*0.25, 0, Math.PI*2);
+  ctx.fill();
+  
+  // stem (brown)
+  ctx.strokeStyle = '#92400e';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(appleX, appleY - appleSize*0.8);
+  ctx.lineTo(appleX, appleY - appleSize*1.4);
+  ctx.stroke();
+  
+  // leaf (green)
+  ctx.fillStyle = '#22c55e';
+  ctx.beginPath();
+  ctx.ellipse(appleX + appleSize*0.6, appleY - appleSize*1.1, appleSize*0.4, appleSize*0.25, 0.4, 0, Math.PI*2);
+  ctx.fill();
+  
+  // leaf vein
+  ctx.strokeStyle = '#16a34a';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(appleX + appleSize*0.3, appleY - appleSize*1.2);
+  ctx.lineTo(appleX + appleSize*0.9, appleY - appleSize*1.0);
+  ctx.stroke();
 
   // helper: rounded rect
   function roundRect(ctx,x,y,w,h,r, fill, stroke){
