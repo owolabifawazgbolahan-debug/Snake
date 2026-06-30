@@ -1,6 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
+// Enable high DPI support
+app.commandLine.appendSwitch('high-dpi-support', 'true');
+app.commandLine.appendSwitch('force-device-scale-factor', '1');
+
 let mainWindow;
 
 function createWindow() {
@@ -8,12 +12,15 @@ function createWindow() {
     width: 500,
     height: 700,
     show: false,
+    useContentSize: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
-      contextIsolation: true
+      contextIsolation: true,
+      enableRemoteModule: false,
+      sandbox: true
     },
-    icon: path.join(__dirname, 'icon.png')
+    icon: path.join(__dirname, 'icon.svg')
   });
 
   const startUrl = `file://${path.join(__dirname, 'index.html')}`;

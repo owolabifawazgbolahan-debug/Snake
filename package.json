@@ -23,12 +23,20 @@
   "build": {
     "appId": "com.aviator.snake",
     "productName": "Snake",
+    "files": ["*.js", "*.html", "*.css", "*.json", "*.svg"],
+    "icon": "icon.svg",
     "win": {
-      "target": ["nsis", "portable"]
+      "target": ["nsis", "portable"],
+      "icon": "icon.svg",
+      "certificateFile": null,
+      "certificatePassword": null
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Snake"
     },
     "mac": {
       "target": ["dmg", "zip"]

@@ -1,0 +1,26 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="256" height="256" fill="#0f172a" rx="40"/>
+  
+  <!-- Snake body segments -->
+  <circle cx="128" cy="80" r="24" fill="#22c55e"/>
+  <circle cx="128" cy="120" r="22" fill="#16a34a"/>
+  <circle cx="128" cy="158" r="20" fill="#15803d"/>
+  <circle cx="100" cy="180" r="18" fill="#166534"/>
+  <circle cx="70" cy="170" r="16" fill="#134e4a"/>
+  
+  <!-- Snake head (larger) -->
+  <circle cx="128" cy="80" r="26" fill="#4ade80"/>
+  
+  <!-- Eye white -->
+  <circle cx="138" cy="75" r="6" fill="#fff"/>
+  
+  <!-- Eye pupil -->
+  <circle cx="140" cy="75" r="3" fill="#000"/>
+  
+  <!-- Tongue -->
+  <path d="M 128 105 L 122 115 L 128 118 L 134 115 Z" fill="#ff6b6b" opacity="0.8"/>
+  
+  <!-- Shine effect -->
+  <circle cx="120" cy="70" r="8" fill="#fff" opacity="0.2"/>
+</svg>
